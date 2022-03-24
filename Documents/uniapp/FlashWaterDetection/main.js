@@ -1,11 +1,25 @@
 import App from './App'
 
+import store from './store'
+
+
+
+
+Vue.prototype.$store=store
+Vue.config.productionTip = false
+Vue.prototype.baseUrl="http://localhost:7777/citylife"
+Vue.prototype.appid="wxd11371c8691f221d"
+
+
 // #ifndef VUE3
 import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
+
+
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()
 // #endif

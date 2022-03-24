@@ -1,19 +1,50 @@
 {
-    "pages": [
-        "pages/index/index"
-    ],
-    "subPackages": [],
-    "window": {
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "uni-app",
-        "navigationBarBackgroundColor": "#F8F8F8",
-        "backgroundColor": "#F8F8F8"
-    },
-    "permission": {
-        "scope.userLocation": {
-            "desc": "申请位置信息"
-        }
-    },
-    "usingComponents": {},
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/index/index",
+    "pages/uploadImg/uploadImg",
+    "pages/user/uploadWaterImg/uploadWaterImg",
+    "pages/admin/checkToDealReport/checkToDealReport",
+    "pages/admin/checkAllComUpload/checkAllComUpload",
+    "pages/mid/mid",
+    "pages/user/uploadReason/uploadReason"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "backgroundColor": "#333",
+    "color": "#8F8F94",
+    "selectedColor": "#f33e54",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/img/tabbar/home.png",
+        "selectedIconPath": "static/img/tabbar/homeactive.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mid/mid",
+        "iconPath": "static/img/tabbar/add.png",
+        "selectedIconPath": "static/img/tabbar/addactive.png",
+        "text": "上传"
+      },
+      {
+        "pagePath": "pages/admin/checkToDealReport/checkToDealReport",
+        "iconPath": "static/img/tabbar/me.png",
+        "selectedIconPath": "static/img/tabbar/meactive.png",
+        "text": "个人"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "申请位置信息"
+    }
+  },
+  "usingComponents": {}
 }
