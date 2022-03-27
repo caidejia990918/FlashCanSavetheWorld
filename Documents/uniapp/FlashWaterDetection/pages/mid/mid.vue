@@ -3,11 +3,11 @@
 		<view class="text-xl">欢迎使用水质申报小程序</view>
 		<view class="tabbar-box-wrap">
 			<view class="tabbar-box">
-				<view class="tabbar-box-item" @click="goToPage('/pages/user/uploadWaterImg/uploadWaterImg')">
+				<view class="tabbar-box-item" @click="goToPage(getNeedAuth,'/pages/user/uploadWaterImg/uploadWaterImg')">
 					<image class="box-image" src="../../static/img/release.png" mode="aspectFit"></image>
 					<text class="explain">水质申报</text>
 				</view>
-				<view class="tabbar-box-item" @click="goToPage('/pages/user/uploadReason/uploadReason')">
+				<view class="tabbar-box-item" @click="goToPage(getNeedAuth,'/pages/user/uploadReason/uploadReason')">
 					<image class="box-image" src="../../static/img/qa.png" mode="aspectFit"></image>
 					<text class="explain">超标申报</text>
 				</view>
@@ -17,6 +17,10 @@
 </template> 
 
 <script>
+import {
+		mapGetters,
+		mapActions
+	} from 'vuex'
 export default {
 	data() {
 		return {
@@ -33,13 +37,23 @@ export default {
 		this.active = false;
 	},
 	methods: {
-		goToPage(url) {
-			if (!url) return;
+		...mapActions(['authUserInfo']),
+		goToPage(flag,url) {
+			if (flag == true) {
+				this.authUserInfo()
+				uni.navigateTo({
+					url
+				})
+			} else {
 			uni.navigateTo({
 				url
-			});
+			})
+			}
 		}
-	}
+	},
+	computed: {
+		...mapGetters(['getUserinfo', 'getNeedAuth', 'getIsLogin'])
+	},
 };
 </script>
 

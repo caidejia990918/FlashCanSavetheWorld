@@ -1,1 +1,1 @@
-<view></view>
+<view><u-calendar vue-id="ced0d290-1" show="{{show}}" mode="{{mode}}" data-event-opts="{{[['^confirm',[['confirm']]]]}}" bind:confirm="__e" bind:__l="__l"></u-calendar><u-button bind:click="__e" vue-id="ced0d290-2" data-event-opts="{{[['^click',[['e0']]]]}}" bind:__l="__l" vue-slots="{{['default']}}">打开</u-button></view>

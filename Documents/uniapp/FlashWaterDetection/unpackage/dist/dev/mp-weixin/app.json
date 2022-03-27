@@ -6,7 +6,10 @@
     "pages/admin/checkToDealReport/checkToDealReport",
     "pages/admin/checkAllComUpload/checkAllComUpload",
     "pages/mid/mid",
-    "pages/user/uploadReason/uploadReason"
+    "pages/user/uploadReason/uploadReason",
+    "pages/mine/mine",
+    "pages/user/checkWaterRp/checkWaterRp",
+    "pages/user/checkWaterRes/checkWaterRes"
   ],
   "subPackages": [],
   "window": {
@@ -34,7 +37,7 @@
         "text": "上传"
       },
       {
-        "pagePath": "pages/admin/checkToDealReport/checkToDealReport",
+        "pagePath": "pages/mine/mine",
         "iconPath": "static/img/tabbar/me.png",
         "selectedIconPath": "static/img/tabbar/meactive.png",
         "text": "个人"

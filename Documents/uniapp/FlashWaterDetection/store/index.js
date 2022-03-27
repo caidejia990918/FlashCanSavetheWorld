@@ -5,9 +5,12 @@ Vue.use(Vuex)
 const store=new Vuex.Store({
 	//data
 	state:{
-		userinfo:{},
+		userinfo:{
+			avatar: "../../static/img/index/notlogin.jpg",
+		},
 		needAuth:true,
-		isLogin:false
+		isLogin:false,
+		openid:''
 	},
 	//computed
 	getters:{
@@ -19,6 +22,9 @@ const store=new Vuex.Store({
 		},
 		getIsLogin(state){
 			return state.isLogin
+		},
+		getOpenid(state){
+			return state.openid
 		}
 	},
 	//methods 同步
@@ -32,6 +38,9 @@ const store=new Vuex.Store({
 		setIsLogin(state,isLogin){
 			state.isLogin=isLogin;
 		},
+		setOpenid(state,openid){
+			state.openid=openid;
+		},
 	},
 	//异步的方法
 	actions:{
@@ -40,21 +49,29 @@ const store=new Vuex.Store({
 				uni.login({
 					provider: 'weixin',
 					success: res => {
-						console.log(res.code);
 						Vue.prototype.$u.api.login({
 							appid: Vue.prototype.appid,
 							code: res.code,
-							token: uni.getStorageSync('token')
+							
+							// token: uni.getStorageSync('token')
 						}).then(res => {
 							// console.log(res);
 							// uni.setStorageSync('token', res.data.token);
 							if(res.msg=="登录成功"){
-								context.commit('setUserinfo',res.data.user);
-								// context.commit('setNeedAuth',false);
+								context.commit('setOpenid',res.data.openid)
+								console.log(res.data)
+								if(res.data.nickname!=null){
+									context.commit('setUserinfo',{
+										nickname: res.data.nickname,
+										avatar: res.data.avatar,
+										password: res.data.password,
+										
+									})
+									context.commit('setNeedAuth',false);
+								}
 								context.commit('setIsLogin',true);
 							}
 							resolve("login执行完毕");
-							
 						})
 					},
 					fail: res => {
@@ -72,16 +89,16 @@ const store=new Vuex.Store({
 			return new Promise((resolve,reject)=>{
 				uni.getUserProfile({
 					provider: 'weixin',
+					desc: '用于完善资料',
 					lang: 'zh_CN',
 					success: res => {
 						console.log("用户", JSON.stringify(res));
 						context.commit('setUserinfo',{
 							nickname: res.userInfo.nickName,
-							sex: res.userInfo.gender === 1,
 							avatar: res.userInfo.avatarUrl,
-							city: res.userInfo.city
+							city: res.userInfo.city,
+							openid:context.state.openid
 						})
-						
 						Vue.prototype.$u.api.auth(context.state.userinfo).then(res=>{
 							console.log(res);
 							if(res.msg=="授权成功"){
