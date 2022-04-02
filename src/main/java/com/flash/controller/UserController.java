@@ -4,7 +4,9 @@ package com.flash.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.flash.common.lang.Result;
 import com.flash.entry.WaterInfo;
+import com.flash.entry.WaterReport;
 import com.flash.service.WaterInfoService;
+import com.flash.service.WaterReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ public class UserController {
 
   @Autowired
   WaterInfoService waterInfoService;
+  @Autowired
+  WaterReportService waterReportService;
 
   @PostMapping("/declare")
   public Result Declare(@PathVariable String openid, @RequestBody WaterInfo waterinfo) {
@@ -50,6 +54,26 @@ public class UserController {
     return Result.succ(waterInfos);
   }
 
+
+  @PostMapping("/uploadReason")
+  public Result UploadReason(@PathVariable String openid, @RequestBody WaterReport waterReport){
+    waterReport.setOpenid(openid);
+    waterReport.setCreated(LocalDateTime.now());
+
+    try {
+      WaterInfo waterInfo = new WaterInfo();
+      waterInfo.setStatus("审核中");
+      waterInfo.setNeedUploadReason("否");
+      waterInfoService.update(waterInfo,new QueryWrapper<WaterInfo>().eq("id", waterReport.getInfoId()));
+      waterReportService.save(waterReport);
+      return Result.succ(200,"提交成功",waterReport);
+    }catch (Exception e){
+      System.out.println(e);
+      return Result.fail(e.toString());
+    }
+
+
+}
 
   public String NeedReport(String msg) {
     String arr[] = {"有大量的铁、锰和被氧化的铁细菌，重度污染", "正常", "有少量的铁、锰和被氧化的铁细菌，轻度污染", "含铁量已超标", "水中藻类及水生物较大量，氮、磷等营养物质，水体富营养化"};
