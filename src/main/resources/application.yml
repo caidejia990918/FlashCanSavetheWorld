@@ -1,0 +1,16 @@
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+server:
+  port: 8081
+flash:
+  jwt:
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    expire: 604800
+    header: Authorization
+
+wx:
+  miniapp:
+    configs:
+      - appid: wxcd5e2987ed498169
+        secret: 1c40b7b9d31bde670a817c93f1652925
+
