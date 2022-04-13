@@ -3,8 +3,10 @@ package com.flash.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.flash.common.lang.Result;
+import com.flash.entry.InfoReportVO;
 import com.flash.entry.WaterInfo;
 import com.flash.entry.WaterReport;
+import com.flash.entry.infoByCompanyVO;
 import com.flash.service.WaterInfoService;
 import com.flash.service.WaterReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,12 +56,19 @@ public class UserController {
     return Result.succ(waterInfos);
   }
 
+  @GetMapping("/getWaterRp")
+  public Result GetWaterRp(@PathVariable String openid){
+    List<WaterReport> waterInfos = waterReportService.list(new QueryWrapper<WaterReport>().eq("openid", openid).orderByDesc("created"));
+    System.out.println(waterInfos);
+    return Result.succ(waterInfos);
+  }
+
 
   @PostMapping("/uploadReason")
   public Result UploadReason(@PathVariable String openid, @RequestBody WaterReport waterReport){
     waterReport.setOpenid(openid);
     waterReport.setCreated(LocalDateTime.now());
-
+    waterReport.setRecord("等待负责人审核");
     try {
       WaterInfo waterInfo = new WaterInfo();
       waterInfo.setStatus("审核中");
@@ -74,6 +83,21 @@ public class UserController {
 
 
 }
+  @GetMapping("/adminGetInfo")
+  public Result adminGetInfo(){
+    List<InfoReportVO> all = waterInfoService.getALL();
+    System.out.println(all);
+    return Result.succ(all);
+  }
+
+  @GetMapping("/adminGetInfoForAll")
+  public Result adminGetInfoForAll(){
+
+    List<infoByCompanyVO> submitAll = waterInfoService.getSubmitAll();
+    System.out.println(submitAll);
+    return Result.succ(submitAll);
+  }
+
 
   public String NeedReport(String msg) {
     String arr[] = {"有大量的铁、锰和被氧化的铁细菌，重度污染", "正常", "有少量的铁、锰和被氧化的铁细菌，轻度污染", "含铁量已超标", "水中藻类及水生物较大量，氮、磷等营养物质，水体富营养化"};
