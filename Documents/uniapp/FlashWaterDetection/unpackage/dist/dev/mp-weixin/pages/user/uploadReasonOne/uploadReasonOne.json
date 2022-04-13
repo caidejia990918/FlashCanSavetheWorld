@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-upload": "/node-modules/uview-ui/components/u-upload/u-upload"
+  }
+}
