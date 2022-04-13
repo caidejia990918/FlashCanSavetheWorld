@@ -10,10 +10,17 @@ const store=new Vuex.Store({
 		},
 		needAuth:true,
 		isLogin:false,
-		openid:''
+		openid:'',
+		curWaterInfo:{
+			
+		}
+		
 	},
 	//computed
 	getters:{
+		getCurWaterInfo(state){
+			return state.curWaterInfo
+		},
 		getUserinfo(state){
 			return state.userinfo
 		},
@@ -29,6 +36,9 @@ const store=new Vuex.Store({
 	},
 	//methods 同步
 	mutations:{
+		setCurWaterInfo(state,curWaterInfo){
+			 state.curWaterInfo=curWaterInfo
+		},
 		setUserinfo(state,userinfo){
 			state.userinfo=userinfo;
 		},
@@ -65,7 +75,7 @@ const store=new Vuex.Store({
 										nickname: res.data.nickname,
 										avatar: res.data.avatar,
 										password: res.data.password,
-										
+										rule:res.data.rule
 									})
 									context.commit('setNeedAuth',false);
 								}

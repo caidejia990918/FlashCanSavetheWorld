@@ -91,6 +91,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uForm: function() {
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-form/u-form */ "node-modules/uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 122))
+    },
+    uFormItem: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 129))
+    },
+    uInput: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 140))
+    },
+    uUpload: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 147))
+    },
+    uButton: function() {
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 154))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -128,20 +163,154 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-var _default =
-{
-  data: function data() {
-    return {};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
-  },
-  methods: {} };exports.default = _default;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var util = _interopRequireWildcard(__webpack_require__(/*! ../../../common/util.js */ 65));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var formatLocation = util.formatLocation;var _default = { data: function data() {return { title: 'chooseLocation', hasLocation: false, location: {}, needUpload: true, action: "http://localhost:8082/upload", form: { company: '', description: '', waterJudge: '', locationAddress: '' }, rules: { company: [{ required: true, message: '请输入公司姓名', trigger: 'blur' }], description: [{ required: true, message: '请输入图片描述', trigger: 'blur' }] } };}, methods: { successSub: function successSub(data, index, lists, name) {this.form.waterJudge = data;this.needUpload = false;uni.showToast({ title: '提交成功', duration: 2000 });console.log(data);}, submit: function submit() {var _this = this;this.$refs.uForm.validate(function (valid) {if (valid) {if (_this.needUpload == true || _this.hasLocation == false) {
+            uni.showToast({
+              title: '请上传所有信息',
+              icon: "error",
+              duration: 2000 });
+
+          } else {
+            uni.request({
+              url: _this.baseUrl + "/" + _this.$store.state.openid + "/declare",
+              method: "POST",
+              data: _this.form,
+              success: function success(res) {
+                uni.navigateBack({
+                  delta: 1,
+                  animationDuration: 500 });
+
+                if (res.data.msg == "上传成功") {
+                  uni.showToast({
+                    title: '上传成功',
+                    icon: "success",
+                    duration: 1000 });
+
+                } else {
+                  uni.showToast({
+                    title: '错误，请重试',
+                    icon: "error",
+                    duration: 2000 });
+
+                }
+              } });
+
+          }
+
+        } else {
+
+        }
+      });
+
+    },
+    chooseLocation: function chooseLocation() {var _this2 = this;
+      uni.chooseLocation({
+        success: function success(res) {
+          _this2.hasLocation = true,
+          _this2.location = formatLocation(res.longitude, res.latitude),
+          _this2.form.locationAddress = res.address;
+        } });
+
+    },
+    clear: function clear() {
+      this.hasLocation = false;
+    } },
+
+
+  onReady: function onReady() {
+    this.$refs.uForm.setRules(this.rules);
+  } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

@@ -9,12 +9,14 @@
     "pages/user/uploadReason/uploadReason",
     "pages/mine/mine",
     "pages/user/checkWaterRp/checkWaterRp",
-    "pages/user/checkWaterRes/checkWaterRes"
+    "pages/user/checkWaterRes/checkWaterRes",
+    "pages/user/uploadReasonOne/uploadReasonOne",
+    "pages/admin/menu/menu"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "水质检测",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

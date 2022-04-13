@@ -33,7 +33,7 @@
 					</view>
 				</view>
 				<view class="cu-form-group align-start">
-					<view class="title">请重新上传水质图片</view>
+					<view class="title">请上传处理后的水质图片</view>
 					<u-upload :action="action" max-count=1 @on-success="successSub" width="150" height="150"
 						show-progress="false"></u-upload>
 				</view>

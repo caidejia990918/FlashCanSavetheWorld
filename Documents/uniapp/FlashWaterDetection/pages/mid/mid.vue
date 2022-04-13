@@ -40,10 +40,12 @@ export default {
 		...mapActions(['authUserInfo']),
 		goToPage(flag,url) {
 			if (flag == true) {
-				this.authUserInfo()
-				uni.navigateTo({
-					url
+				this.authUserInfo().then(res=>{
+					uni.navigateTo({
+						url
+					})
 				})
+				
 			} else {
 			uni.navigateTo({
 				url

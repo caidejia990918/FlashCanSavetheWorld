@@ -7,6 +7,7 @@
 				<text>欢迎您，管理员{{name}}!下面是您的提交报告</text>
 			</view>
 		</view>
+		<u-empty text="您没有提交记录" mode="history" v-if="check(infos)" icon-size="250" font-size="50"></u-empty>
 		<view class="cu-card case" v-for="(info, index) in infos" :key="index">
 			<view class="cu-item shadow">
 				<u-tag :text="index+1" mode="dark" />
@@ -66,7 +67,7 @@
 								</u-col>
 								<u-col span="6" text-align="right">
 									<view class="demo-layout " v-if="info.needUploadReason=='是'">
-										<button type="warn" size="mini">进行报备</button>
+										<button type="warn" size="mini" @tap="Baobei(info)">进行报备</button>
 									</view>
 								</u-col>
 							</u-row>
@@ -78,7 +79,7 @@
 							<view class="text-xl padding">
 								<text class="text-black text-bold">处理状态</text>
 							</view>
-							<view class="padding text-df">
+							<view class="padding text-df text-red">
 								{{info.status}}
 							</view>
 						</view>
@@ -93,10 +94,6 @@
 							</view>
 						</view>
 					</view>
-
-
-
-
 				</view>
 			</view>
 		</view>
@@ -104,6 +101,9 @@
 </template>
 
 <script>
+	import {
+		mapMutations,
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -117,6 +117,7 @@
 			}
 		},
 		methods: {
+			...mapMutations(['setCurWaterInfo']),
 			getData() {
 				uni.request({
 					method: 'GET',
@@ -125,10 +126,26 @@
 						this.infos = res.data.data
 					}
 				})
-			}
+			},
+			Baobei(info) {
+				this.setCurWaterInfo(info)
+				uni.navigateTo({
+					url: "../uploadReasonOne/uploadReasonOne"
+				})
+			},
+			check(obj) {
+				var name;
+				for (name in obj) {
+					return false;
+				}
+				return true;
+			},
 		},
 		onLoad() {
 			this.getData()
+			uni.$once('refreshData', () => {
+				this.getData();
+			})
 		}
 	}
 </script>
