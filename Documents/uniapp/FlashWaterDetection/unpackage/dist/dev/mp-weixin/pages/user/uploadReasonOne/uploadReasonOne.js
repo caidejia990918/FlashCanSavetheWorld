@@ -219,7 +219,7 @@ var _default =
 
 
       info: this.$store.state.curWaterInfo,
-      action: "http://localhost:8082/upload" };
+      action: this.baseUrl2 + "/upload" };
 
   },
   methods: {

@@ -9,8 +9,8 @@
 				</view>
 				<view class="cu-list menu-avatar" @click="authinfo">
 					<view class="cu-item">
-						<view class="cu-avatar round lg"
-							:style="[{ backgroundImage:'url(' + getUserinfo.avatar + ')' }]">
+						<view class="cu-avatar round lg">
+							<image  :src="getUserinfo.avatar" class="cu-avatar round lg"></image>
 						</view>
 						<view class="content flex-sub">
 							<view class="text-grey">{{getNeedAuth==false?"欢迎您,"+getUserinfo.nickname+"!":"还未登录，请先登录"}}

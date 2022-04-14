@@ -8,7 +8,8 @@ Vue.use(uView)
 uni.$u.config.unit = 'rpx'
 Vue.prototype.$store=store
 Vue.config.productionTip = false
-Vue.prototype.baseUrl="http://172.20.10.2:8081"
+Vue.prototype.baseUrl="http://192.168.9.102:8081"
+Vue.prototype.baseUrl2="http://192.168.9.102:8082"
 Vue.prototype.appid="wxcd5e2987ed498169"
 
 

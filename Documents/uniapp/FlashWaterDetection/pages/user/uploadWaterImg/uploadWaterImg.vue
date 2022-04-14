@@ -54,7 +54,7 @@
 				hasLocation: false,
 				location: {},
 				needUpload: true,
-				action: "http://localhost:8082/upload",
+				action:this.baseUrl2 + "/upload",
 				form: {
 					company: '',
 					description: '',

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-notice-bar mode="horizontal" :list="anotation"></u-notice-bar>
-		<u-select mode="single-column" v-model="show" :list="companys" @confirm="confirm" @tap="fuck()"></u-select>
+		<u-select mode="single-column" v-model="show" :list="companys" @confirm="confirm"></u-select>
 		<view>
 			<u-tabs-swiper ref="uTabs" :list="list" :current="current" @change="tabsChange" :is-scroll="false"
 				swiperWidth="750" :bold="false"></u-tabs-swiper>
