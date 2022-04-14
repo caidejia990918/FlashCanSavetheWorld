@@ -5,11 +5,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class InfoReportVO {
-
+public class InfoReportVO implements Serializable {
+  private static final long serialVersionUID = 1L;
+  private Long id;
+  private Long id2;
   private String nickname;
   @JsonProperty("firstJudge")
   private String firstJudge;

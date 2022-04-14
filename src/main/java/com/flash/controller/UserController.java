@@ -50,16 +50,19 @@ public class UserController {
 
   @GetMapping("/getWaterRes")
   public Result GetWaterRes(@PathVariable String openid){
-    System.out.println(openid);
     List<WaterInfo> waterInfos = waterInfoService.list(new QueryWrapper<WaterInfo>().eq("openid", openid).orderByDesc("created"));
-    System.out.println(waterInfos);
+    return Result.succ(waterInfos);
+  }
+
+  @GetMapping("/getWaterToRp")
+  public Result GetWaterToRp(@PathVariable String openid){
+    List<WaterInfo> waterInfos = waterInfoService.list(new QueryWrapper<WaterInfo>().eq("openid", openid).eq("need_upload_reason","是").orderByDesc("created"));
     return Result.succ(waterInfos);
   }
 
   @GetMapping("/getWaterRp")
   public Result GetWaterRp(@PathVariable String openid){
     List<WaterReport> waterInfos = waterReportService.list(new QueryWrapper<WaterReport>().eq("openid", openid).orderByDesc("created"));
-    System.out.println(waterInfos);
     return Result.succ(waterInfos);
   }
 
@@ -83,20 +86,6 @@ public class UserController {
 
 
 }
-  @GetMapping("/adminGetInfo")
-  public Result adminGetInfo(){
-    List<InfoReportVO> all = waterInfoService.getALL();
-    System.out.println(all);
-    return Result.succ(all);
-  }
-
-  @GetMapping("/adminGetInfoForAll")
-  public Result adminGetInfoForAll(){
-
-    List<infoByCompanyVO> submitAll = waterInfoService.getSubmitAll();
-    System.out.println(submitAll);
-    return Result.succ(submitAll);
-  }
 
 
   public String NeedReport(String msg) {
