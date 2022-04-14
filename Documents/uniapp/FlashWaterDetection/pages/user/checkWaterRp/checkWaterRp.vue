@@ -68,7 +68,7 @@
 							<view class="text-xl padding">
 								<text class="text-black text-bold">分管负责人处理结果</text>
 							</view>
-							<view class="padding text-df">
+							<view class="padding text-df text-red">
 								{{info.record}}
 							</view>
 						</view>

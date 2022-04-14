@@ -7,42 +7,21 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "水质检测"
+				"navigationBarTitleText": "水质检测",
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
+
+				
 			}
 		}
-	    ,{
-            "path" : "pages/uploadImg/uploadImg",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
         ,{
             "path" : "pages/user/uploadWaterImg/uploadWaterImg",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/admin/checkToDealReport/checkToDealReport",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/admin/checkAllComUpload/checkAllComUpload",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
@@ -51,7 +30,9 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
@@ -60,7 +41,9 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
@@ -69,7 +52,9 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
@@ -78,7 +63,9 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
@@ -87,7 +74,9 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
@@ -96,7 +85,9 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
@@ -105,16 +96,17 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
             }
             
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "水质检测",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTitleText": "水质检测"
+		
 	},
 	"tabBar": {
 		"borderStyle": "black",

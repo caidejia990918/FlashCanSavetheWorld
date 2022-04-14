@@ -1,10 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/uploadImg/uploadImg",
     "pages/user/uploadWaterImg/uploadWaterImg",
-    "pages/admin/checkToDealReport/checkToDealReport",
-    "pages/admin/checkAllComUpload/checkAllComUpload",
     "pages/mid/mid",
     "pages/user/uploadReason/uploadReason",
     "pages/mine/mine",
@@ -16,9 +13,7 @@
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "水质检测",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarTitleText": "水质检测"
   },
   "tabBar": {
     "borderStyle": "black",

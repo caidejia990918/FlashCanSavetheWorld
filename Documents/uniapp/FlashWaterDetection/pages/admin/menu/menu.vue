@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-notice-bar mode="horizontal" :list="anotation"></u-notice-bar>
-			<u-select mode="single-column" v-model="show" :list="companys" @confirm="confirm" @tap = "fuck()"></u-select>
+		<u-select mode="single-column" v-model="show" :list="companys" @confirm="confirm" @tap="fuck()"></u-select>
 		<view>
 			<u-tabs-swiper ref="uTabs" :list="list" :current="current" @change="tabsChange" :is-scroll="false"
 				swiperWidth="750" :bold="false"></u-tabs-swiper>
@@ -117,14 +117,14 @@
 											</view>
 										</view>
 									</view>
-									<u-button type="primary">进行处理</u-button>
+									<u-button type="primary" @click="deal(info.id,info.id2,index)">进行处理</u-button>
 								</view>
 							</view>
 						</view>
 					</scroll-view>
 				</view>
 			</swiper-item>
-			<swiper-item class="swiper-item" >
+			<swiper-item class="swiper-item">
 				<scroll-view scroll-y style="height: 100%;width: 100%;" @scrolltolower="onreachBottom">
 					<view>
 						<u-button @click="show = true" type="primary">请选择公司</u-button>
@@ -229,7 +229,7 @@
 													<text class="text-black text-bold">再次提交时间</text>
 												</view>
 												<view class="padding text-df">
-													{{info.createdS}}
+													{{info.createdS==null?'无提交记录':info.createdS}}
 												</view>
 											</view>
 										</view>
@@ -238,7 +238,7 @@
 												<view class="text-xl padding">
 													<text class="text-black text-bold">审核状态</text>
 												</view>
-												<view class="padding text-df">
+												<view class="padding text-df text-purple">
 													{{info.status}}
 												</view>
 											</view>
@@ -253,7 +253,7 @@
 												</view>
 											</view>
 										</view>
-				
+
 									</view>
 								</view>
 							</view>
@@ -262,6 +262,27 @@
 				</scroll-view>
 			</swiper-item>
 		</swiper>
+		<view>
+			<u-popup v-model="pp" mode="center" border-radius="14" width="500" closeable="true">
+				<view class="text-center">
+					<text class="text-xl text-brown">审核</text>
+					<u-form :model="form" ref="uForm" label-position="top">
+						<u-form-item label="审核结果" prop="record">
+							<u-input v-model="form.record" type="text" placeholder="请输入审核结果" />
+						</u-form-item>
+						<u-radio-group v-model="form.status" @change="radioGroupChange">
+							<u-radio @change="radioChange" v-for="(item, index) in conf" :key="index" :name="item"
+								shape="square">
+								{{item}}
+							</u-radio>
+						</u-radio-group>
+					</u-form>
+					<button type="primary" size="mini" @tap="submit()">提交</button>
+				</view>
+
+			</u-popup>
+		</view>
+
 	</view>
 </template>
 
@@ -269,17 +290,34 @@
 	export default {
 		data() {
 			return {
+				form: {
+					record: '',
+					status: '通过',
+					id:'',
+					id2:''
+				},
+				index_t:'',
+				pp: false,
 				show: false,
 				swiperHeight: 0,
 				infos1: [],
 				infos2: [],
-				infos3:[],
-				companys: [		
-				],
+				infos3: [],
+				companys: [],
+				rules: {
+					record: [{
+						required: true,
+						message: '请输入审核结果',
+						trigger: 'blur'
+					}],
+				},
 				anotation: [
 					'请各分管负责人及时处理水质报告',
-					"并提出合理的意见",
+					"并提出合理建议",
 
+				],
+				conf: [
+					"通过", "不通过"
 				],
 				list: [{
 					name: '查看待处理报告'
@@ -302,13 +340,13 @@
 			confirm(e) {
 				let str = e[0].label
 				var i = 0
-				this.infos3.length=0
-				for(i;i<this.infos2.length;i++){
-					if(this.infos2[i].company==str){
+				this.infos3.length = 0
+				for (i; i < this.infos2.length; i++) {
+					if (this.infos2[i].company == str) {
 						this.infos3.push(this.infos2[i])
 					}
 				}
-				this.swiperHeight = this.infos3.length*2600;
+				this.swiperHeight = this.infos3.length * 2600;
 			},
 			getData() {
 				uni.request({
@@ -333,12 +371,71 @@
 				var i = 0;
 				for (i; i < this.infos2.length; i++) {
 					this.companys.push({
-						value: i+1,
+						value: i + 1,
 						label: this.infos2[i].company
 					})
 					console.log(this.infos2[i].company)
 				}
 				console.log(this.companys)
+			},
+			deal(id,id2,index) {
+				this.pp = true
+				this.form.id = id
+				this.form.id2 = id2
+				this.index_t = index
+			},
+			submit() {
+				let that = this
+				this.$refs.uForm.validate(valid => {
+					if (valid) {
+						uni.showModal({
+							title: '提示',
+							content: '确认提交',
+							success: function(res) {
+								if (res.confirm) {
+									uni.request({
+										url: that.baseUrl + "/" + that.$store.state.openid +
+											"/admin/deal",
+										method: "POST",
+										data: that.form,
+										success: (res) => {
+											if (res.data.msg == "操作成功") {
+												uni.showToast({
+													title: '提交成功',
+													icon: "success",
+													duration: 2000,
+
+												})
+												that.infos1.splice(that.index_t,1)
+												that.swiperHeight-=2400
+												that.pp = false
+											} else {
+												uni.showToast({
+													title: '提交失败',
+													icon: "error",
+													duration: 2000,
+												})
+											}
+										}
+									})
+
+								} else if (res.cancel) {
+									console.log('用户点击取消');
+								}
+							}
+						});
+					} else {
+						console.log('验证失败');
+					}
+				});
+
+			},
+			radioChange(e) {
+				// console.log(e);
+			},
+			// 选中任一radio时，由radio-group触发
+			radioGroupChange(e) {
+				// console.log(e);
 			},
 			// tabs通知swiper切换
 			tabsChange(index) {
@@ -363,20 +460,31 @@
 			}
 		},
 		watch: {
-		    swiperCurrent: {
-		        handler (newName, oldName) {
-					if(newName == 0){
+			swiperCurrent: {
+				handler(newName, oldName) {
+					if (newName == 0) {
 						this.swiperHeight = this.infos1.length * 2400
-					}else{
+					} else {
 						this.infos3.length = 0
 						this.swiperHeight = 150
 					}
-		            
-		        },
-		        immediate: true
-		    }
-		},
 
+				},
+				immediate: true
+			},
+			swiperHeight: {
+				handler(newName, oldName) {
+					if (newName == 0) {
+						this.swiperHeight=1000
+					}
+			
+				},
+				immediate: true
+			}
+		},
+		onReady() {
+			this.$refs.uForm.setRules(this.rules);
+		},
 		onLoad() {
 			this.getData();
 		}
