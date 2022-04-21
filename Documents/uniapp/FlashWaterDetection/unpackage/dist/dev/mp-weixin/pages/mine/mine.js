@@ -94,7 +94,7 @@ var components
 try {
   components = {
     uPopup: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 143))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 178))
     },
     uForm: function() {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-form/u-form */ "node-modules/uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 104))
@@ -276,9 +276,12 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
     },
     ToCheckWaterRp: function ToCheckWaterRp(flag) {
       if (flag == true) {
-        this.authUserInfo();
-        uni.navigateTo({
-          url: "../user/checkWaterRp/checkWaterRp" });
+        this.authUserInfo().then(function (res) {
+          console.log(res);
+          uni.navigateTo({
+            url: "../user/checkWaterRp/checkWaterRp" });
+
+        });
 
       } else {
         uni.navigateTo({
@@ -288,9 +291,12 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
     },
     TocheckWaterRes: function TocheckWaterRes(flag) {
       if (flag == true) {
-        this.authUserInfo();
-        uni.navigateTo({
-          url: "../user/checkWaterRes/checkWaterRes" });
+        this.authUserInfo().then(function (res) {
+          console.log(res);
+          uni.navigateTo({
+            url: "../user/checkWaterRes/checkWaterRes" });
+
+        });
 
       } else {
         uni.navigateTo({

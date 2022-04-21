@@ -114,11 +114,14 @@
 			},
 			ToCheckWaterRp(flag) {
 				if (flag == true) {
-					this.authUserInfo()
-					uni.navigateTo({
-						url: "../user/checkWaterRp/checkWaterRp"
+					this.authUserInfo().then(res => {
+						console.log(res)
+						uni.navigateTo({
+							url: "../user/checkWaterRp/checkWaterRp"
+						})
 					})
-				} else {
+				
+				}  else {
 					uni.navigateTo({
 						url: "../user/checkWaterRp/checkWaterRp"
 					})
@@ -126,11 +129,14 @@
 			},
 			TocheckWaterRes(flag) {
 				if (flag == true) {
-					this.authUserInfo()
-					uni.navigateTo({
-						url: "../user/checkWaterRes/checkWaterRes"
+					this.authUserInfo().then(res => {
+						console.log(res)
+						uni.navigateTo({
+							url: "../user/checkWaterRes/checkWaterRes"
+						})
 					})
-				} else {
+				
+				}  else {
 					uni.navigateTo({
 						url: "../user/checkWaterRes/checkWaterRes"
 					})
