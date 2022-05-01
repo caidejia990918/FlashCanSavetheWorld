@@ -16,6 +16,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 微信小程序用户接口
  *
@@ -76,6 +79,22 @@ public class WxMaUserController {
 
 
 
+    }
+
+    @GetMapping("/getData")
+    public Result getData(){
+      List<WxUser> list = userService.list();
+      return Result.succ(list);
+    }
+
+    @PostMapping("/changeAuth")
+    public Result changeAuth(@RequestBody Map<String,String> params){
+      int auth =  Integer.parseInt( params.get("auth"));
+      String openid =params.get("openid");
+      WxUser wxUser = userService.getOne(new QueryWrapper<WxUser>().eq("openid", openid));
+      wxUser.setRule(auth);
+      userService.saveOrUpdate(wxUser);
+      return Result.succ("操作成功");
     }
 
 }
