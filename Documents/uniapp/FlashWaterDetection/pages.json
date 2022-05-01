@@ -102,6 +102,28 @@
             }
             
         }
+        ,{
+            "path" : "pages/controller/controller",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
+            }
+            
+        }
+        ,{
+            "path" : "pages/controller_auth/controller_auth",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#262626",
+				"navigationBarTextStyle":"white"  //状态栏字体颜色
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

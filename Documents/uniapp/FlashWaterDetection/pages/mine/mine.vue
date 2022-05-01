@@ -52,6 +52,12 @@
 								<text class="text-purple">分管负责人登录</text>
 							</view>
 						</view>
+						<view class="cu-item text-center">
+							<view class="content" @tap="ToWechatContro(getUserinfo.rule)">
+								<image src="/static/img/index/w5.png" class="png" mode="aspectFit"></image>
+								<text class="text-yellow">后台管理员登录</text>
+							</view>
+						</view>
 					</view>
 				</view>
 				<u-popup v-model="show" mode="center" border-radius="14" width="500">
@@ -64,8 +70,23 @@
 						</u-form>
 						<button type="primary" size="mini" @tap="login(getUserinfo.password)">确认</button>
 					</view>
-
 				</u-popup>
+				
+				<u-popup v-model="admin_show" mode="center" border-radius="14" width="500">
+					<view class="text-center">
+						<text class="text-xl text-brown">后台管理员登录</text>
+						<u-form :model="form2" ref="uForm2" label-position="top">
+							<u-form-item label="请输入后台管理员账号" prop="account">
+								<u-input v-model="form2.account" type="text"  placeholder="请输入账号" />
+							</u-form-item>
+							<u-form-item label="请输入后台管理员密码" prop="password">
+								<u-input v-model="form2.password" type="password" placeholder="请输入密码" />
+							</u-form-item>
+						</u-form>
+						<button type="primary" size="mini" @tap="admin_login(getUserinfo.password)">确认</button>
+					</view>
+				</u-popup>
+				
 
 			</view>
 		</view>
@@ -80,15 +101,32 @@
 	export default {
 		data() {
 			return {
-				
+				acc : "cdjzs",
 				form: {
 					password: "",
 				},
+				form2: {
+					account:"",
+					password: "",
+				},
+				admin_show:false,
 				show: false,
 				rules: {
 					password: [{
 						required: true,
 						message: '请输入密码',
+						trigger: 'blur'
+					}],
+				},
+				rules2: {
+					password: [{
+						required: true,
+						message: '请输入密码',
+						trigger: 'blur'
+					}],
+					account: [{
+						required: true,
+						message: '请输入账号',
 						trigger: 'blur'
 					}],
 				}
@@ -154,6 +192,18 @@
 					})
 				}
 			},
+			ToWechatContro(hasrule){
+				if (hasrule == 2) {
+					this.admin_show = true
+				} else {
+					uni.showToast({
+						title: '您不是后台管理员',
+						icon: "error",
+						duration: 2000
+					})
+				}
+				
+			},
 			login(pass) {
 				this.$refs.uForm.validate(valid => {
 					if (valid) {
@@ -162,6 +212,26 @@
 							uni.navigateTo({
 								url:"../admin/menu/menu"
 							})
+						}else{
+							uni.showToast({
+								title: '密码错误',
+								icon:"none",
+								duration: 1000
+							})
+						}
+						
+					} else {
+					}
+				});
+			},
+			admin_login(pass) {
+				this.$refs.uForm2.validate(valid => {
+					if (valid) {
+						if(this.form2.password == pass&&this.acc==this.form2.account){
+							this.admin_show = false
+						uni.navigateTo({
+							url:"../controller/controller"
+						})
 						}else{
 							uni.showToast({
 								title: '密码错误',
@@ -189,6 +259,7 @@
 		},
 		onReady() {
 			this.$refs.uForm.setRules(this.rules);
+			this.$refs.uForm2.setRules(this.rules2);
 		}
 	}
 </script>

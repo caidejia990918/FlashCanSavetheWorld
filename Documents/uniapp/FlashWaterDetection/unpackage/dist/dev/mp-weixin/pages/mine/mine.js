@@ -94,16 +94,16 @@ var components
 try {
   components = {
     uPopup: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 178))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 184))
     },
     uForm: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-form/u-form */ "node-modules/uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 104))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-form/u-form */ "node-modules/uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 110))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 111))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 117))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 122))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 128))
     }
   }
 } catch (e) {
@@ -235,6 +235,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 
 
@@ -242,15 +263,32 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
 {
   data: function data() {
     return {
-
+      acc: "cdjzs",
       form: {
         password: "" },
 
+      form2: {
+        account: "",
+        password: "" },
+
+      admin_show: false,
       show: false,
       rules: {
         password: [{
           required: true,
           message: '请输入密码',
+          trigger: 'blur' }] },
+
+
+      rules2: {
+        password: [{
+          required: true,
+          message: '请输入密码',
+          trigger: 'blur' }],
+
+        account: [{
+          required: true,
+          message: '请输入账号',
           trigger: 'blur' }] } };
 
 
@@ -316,6 +354,18 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
 
       }
     },
+    ToWechatContro: function ToWechatContro(hasrule) {
+      if (hasrule == 2) {
+        this.admin_show = true;
+      } else {
+        uni.showToast({
+          title: '您不是后台管理员',
+          icon: "error",
+          duration: 2000 });
+
+      }
+
+    },
     login: function login(pass) {var _this = this;
       this.$refs.uForm.validate(function (valid) {
         if (valid) {
@@ -323,6 +373,26 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
             _this.show = false;
             uni.navigateTo({
               url: "../admin/menu/menu" });
+
+          } else {
+            uni.showToast({
+              title: '密码错误',
+              icon: "none",
+              duration: 1000 });
+
+          }
+
+        } else {
+        }
+      });
+    },
+    admin_login: function admin_login(pass) {var _this2 = this;
+      this.$refs.uForm2.validate(function (valid) {
+        if (valid) {
+          if (_this2.form2.password == pass && _this2.acc == _this2.form2.account) {
+            _this2.admin_show = false;
+            uni.navigateTo({
+              url: "../controller/controller" });
 
           } else {
             uni.showToast({
@@ -351,6 +421,7 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
 
   onReady: function onReady() {
     this.$refs.uForm.setRules(this.rules);
+    this.$refs.uForm2.setRules(this.rules2);
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

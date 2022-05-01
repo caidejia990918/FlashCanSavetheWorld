@@ -94,19 +94,19 @@ var components
 try {
   components = {
     uNoticeBar: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-notice-bar/u-notice-bar */ "node-modules/uview-ui/components/u-notice-bar/u-notice-bar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-notice-bar/u-notice-bar.vue */ 143))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-notice-bar/u-notice-bar */ "node-modules/uview-ui/components/u-notice-bar/u-notice-bar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-notice-bar/u-notice-bar.vue */ 149))
     },
     uEmpty: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-empty/u-empty */ "node-modules/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! uview-ui/components/u-empty/u-empty.vue */ 150))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-empty/u-empty */ "node-modules/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! uview-ui/components/u-empty/u-empty.vue */ 156))
     },
     uTag: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tag/u-tag */ "node-modules/uview-ui/components/u-tag/u-tag").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tag/u-tag.vue */ 157))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tag/u-tag */ "node-modules/uview-ui/components/u-tag/u-tag").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tag/u-tag.vue */ 163))
     },
     uRow: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-row/u-row */ "node-modules/uview-ui/components/u-row/u-row").then(__webpack_require__.bind(null, /*! uview-ui/components/u-row/u-row.vue */ 164))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-row/u-row */ "node-modules/uview-ui/components/u-row/u-row").then(__webpack_require__.bind(null, /*! uview-ui/components/u-row/u-row.vue */ 170))
     },
     uCol: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-col/u-col */ "node-modules/uview-ui/components/u-col/u-col").then(__webpack_require__.bind(null, /*! uview-ui/components/u-col/u-col.vue */ 171))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-col/u-col */ "node-modules/uview-ui/components/u-col/u-col").then(__webpack_require__.bind(null, /*! uview-ui/components/u-col/u-col.vue */ 177))
     }
   }
 } catch (e) {

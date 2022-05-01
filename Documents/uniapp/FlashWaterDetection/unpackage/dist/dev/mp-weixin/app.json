@@ -8,7 +8,9 @@
     "pages/user/checkWaterRp/checkWaterRp",
     "pages/user/checkWaterRes/checkWaterRes",
     "pages/user/uploadReasonOne/uploadReasonOne",
-    "pages/admin/menu/menu"
+    "pages/admin/menu/menu",
+    "pages/controller/controller",
+    "pages/controller_auth/controller_auth"
   ],
   "subPackages": [],
   "window": {

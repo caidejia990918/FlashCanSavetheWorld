@@ -91,8 +91,6 @@ const store=new Vuex.Store({
 					}
 				});
 			})
-			
-			
 		},
 		
 		authUserInfo(context) {
